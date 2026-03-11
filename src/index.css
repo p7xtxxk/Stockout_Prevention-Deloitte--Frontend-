@@ -1,68 +1,261 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import "tailwindcss";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@theme {
+  /* === BRAND PALETTE === */
+  /* Primary — Electric Violet */
+  --color-primary-50: #f0f4ff;
+  --color-primary-100: #e0e9ff;
+  --color-primary-200: #c7d7fe;
+  --color-primary-300: #a3bbfb;
+  --color-primary-400: #7c96f6;
+  --color-primary-500: #5a6ef0;
+  --color-primary-600: #4550e6;
+  --color-primary-700: #3a40d0;
+  --color-primary-800: #3035a9;
+  --color-primary-900: #2c3286;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Surface — Deep Navy-Blue (sidebar, dark elements) */
+  --color-navy-50: #eef2f9;
+  --color-navy-100: #d5dcee;
+  --color-navy-200: #adbad9;
+  --color-navy-300: #7892bf;
+  --color-navy-400: #4f6ea8;
+  --color-navy-500: #34508e;
+  --color-navy-600: #273e74;
+  --color-navy-700: #1d2f5c;
+  --color-navy-800: #152247;
+  --color-navy-900: #0d1630;
+
+  /* Background — Very light bluish grey */
+  --color-bg-base: #f0f4fa;
+  --color-bg-card: #ffffff;
+
+  /* Neutrals */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+
+  /* Semantic Colors */
+  --color-success-50: #ecfdf5;
+  --color-success-500: #10b981;
+  --color-success-600: #059669;
+  --color-warning-50: #fffbeb;
+  --color-warning-400: #fbbf24;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-danger-50: #fff1f2;
+  --color-danger-500: #f43f5e;
+  --color-danger-600: #e11d48;
+  --color-info-50: #eff6ff;
+  --color-info-500: #3b82f6;
+  --color-info-600: #2563eb;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 }
-a:hover {
-  color: #535bf2;
+
+html,
+body,
+#root {
+  min-height: 100%;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  color: #c8d6ef;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(90, 110, 240, 0.28),
+      transparent 32%
+    ),
+    radial-gradient(circle at 80% 0%, rgba(21, 34, 71, 0.95), transparent 28%),
+    linear-gradient(160deg, #090f22 0%, #0c183a 40%, #0e1e3d 65%, #0b1430 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(163, 187, 251, 0.065) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(163, 187, 251, 0.065) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.65), transparent 88%);
+}
+
+#root {
+  position: relative;
+}
+
+.app-shell {
+  position: relative;
   min-height: 100vh;
+  isolation: isolate;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.app-shell::before,
+.app-shell::after {
+  content: "";
+  position: fixed;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: -1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.app-shell::before {
+  top: 5rem;
+  right: 4rem;
+  width: 22rem;
+  height: 22rem;
+  background: rgba(90, 110, 240, 0.32);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.app-shell::after {
+  left: 18rem;
+  bottom: 5rem;
+  width: 18rem;
+  height: 18rem;
+  background: rgba(124, 150, 246, 0.18);
+}
+
+.app-surface {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.075) 0%,
+    rgba(124, 150, 246, 0.04) 100%
+  );
+  border: 1px solid rgba(163, 187, 251, 0.14);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(20px);
+}
+
+.app-surface-muted {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(163, 187, 251, 0.09);
+}
+
+.app-panel-dark {
+  background: linear-gradient(
+    180deg,
+    rgba(13, 22, 48, 0.98) 0%,
+    rgba(21, 34, 71, 0.98) 58%,
+    rgba(29, 47, 92, 0.98) 100%
+  );
+  border-right: 1px solid rgba(163, 187, 251, 0.14);
+  box-shadow: 18px 0 38px rgba(13, 22, 48, 0.24);
+}
+
+.app-accent-ring {
+  box-shadow:
+    0 0 0 1px rgba(124, 150, 246, 0.22),
+    0 12px 30px rgba(69, 80, 230, 0.18);
+}
+
+.app-table-head {
+  background: rgba(0, 0, 0, 0.28);
+  border-bottom: 1px solid rgba(163, 187, 251, 0.1);
+}
+
+.app-table-body {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.app-table-row {
+  transition: background-color 180ms ease;
+}
+
+.app-table-row:hover {
+  background: rgba(124, 150, 246, 0.08);
+}
+
+.app-input-surface {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(163, 187, 251, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  color: #d8e5f8;
+}
+
+.app-button-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(163, 187, 251, 0.28);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  color: #c8d6ef;
+}
+
+.app-button-primary {
+  background: linear-gradient(135deg, #5a6ef0 0%, #4550e6 100%);
+  box-shadow: 0 16px 28px rgba(69, 80, 230, 0.26);
+}
+
+.app-stat-tile {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(163, 187, 251, 0.13);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ── Dark-theme colour token overrides ───────────────────────────────────────
+   Re-define Tailwind CSS tokens inside .app-shell so every utility class
+   (text-slate-*, bg-slate-*, border-slate-*, etc.) automatically adapts to
+   the deep-navy background inherited from the sidebar palette.             */
+.app-shell {
+  /* Slate — flip the scale so darkest ↔ lightest */
+  --color-slate-50: #06111f;
+  --color-slate-100: #0a1a30;
+  --color-slate-200: #122340;
+  --color-slate-300: #1e3558;
+  --color-slate-400: #4a6b90;
+  --color-slate-500: #6b8aaf;
+  --color-slate-600: #94afd4;
+  --color-slate-700: #b8cce8;
+  --color-slate-800: #d8e5f8;
+  --color-slate-900: #ecf1fd;
+
+  /* Navy — text using dark-navy values becomes light */
+  --color-navy-900: #ecf1fd;
+  --color-navy-800: #d8e5f8;
+  --color-navy-700: #b8cce8;
+
+  /* Semantic "50" tints — dark equivalents for icon containers / card bg */
+  --color-primary-50: #121d50;
+  --color-primary-100: #182462;
+  --color-success-50: #072318;
+  --color-warning-50: #1e1300;
+  --color-danger-50: #20090e;
+  --color-info-50: #071524;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(90, 110, 240, 0.45);
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 150, 246, 0.65);
 }
