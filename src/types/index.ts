@@ -68,3 +68,85 @@ export interface InventoryMetrics {
   at_risk_skus: number;
   overstock_skus: number;
 }
+
+export interface OverstockItem {
+  sku: string;
+  warehouse: string;
+  current_stock: number;
+  daily_demand: number;
+  coverage_days: number;
+  excess_units: number;
+  threshold: number;
+  suggestion: string;
+}
+
+export interface PurchaseOrder {
+  id: string;
+  sku: string;
+  quantity: number;
+  supplier: string;
+  order_date: string;
+  expected_delivery: string;
+  status: 'Pending Approval' | 'Approved' | 'Rejected' | 'Shipped' | 'Delivered';
+}
+
+export interface InventoryTransfer {
+  id: string;
+  sku: string;
+  source_warehouse: string;
+  destination_warehouse: string;
+  quantity: number;
+  status: 'Pending' | 'In Transit' | 'Completed';
+  created_at: string;
+}
+
+export interface PolicySetting {
+  key: string;
+  label: string;
+  value: number;
+  unit: string;
+  description: string;
+}
+
+export interface AgentLog {
+  id: string;
+  agent_name: string;
+  action: string;
+  timestamp: string;
+  status: 'Success' | 'Error' | 'Running';
+}
+
+export interface AuditEntry {
+  id: string;
+  user: string;
+  action: string;
+  entity: string;
+  timestamp: string;
+  details: string;
+}
+
+export interface DatasetRow {
+  sku_id: string;
+  warehouse_id: string;
+  current_stock: number;
+  daily_sales_velocity: number;
+  supplier_id: string;
+  lead_time: number;
+  safety_stock_level: number;
+}
+
+export interface SupplierData {
+  supplier_id: string;
+  name: string;
+  lead_time: number;
+  reliability_score: number;
+  region: string;
+}
+
+export interface WarehouseData {
+  warehouse_id: string;
+  name: string;
+  location: string;
+  capacity: number;
+  utilization: number;
+}
